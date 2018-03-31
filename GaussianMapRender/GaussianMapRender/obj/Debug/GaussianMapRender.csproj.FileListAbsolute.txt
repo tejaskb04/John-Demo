@@ -1,0 +1,9 @@
+C:\Users\tejas\Documents\GitHub\John-Demo\GaussianMapRender\GaussianMapRender\bin\Debug\GaussianMapRender.exe.config
+C:\Users\tejas\Documents\GitHub\John-Demo\GaussianMapRender\GaussianMapRender\bin\Debug\GaussianMapRender.exe
+C:\Users\tejas\Documents\GitHub\John-Demo\GaussianMapRender\GaussianMapRender\bin\Debug\GaussianMapRender.pdb
+C:\Users\tejas\Documents\GitHub\John-Demo\GaussianMapRender\GaussianMapRender\obj\Debug\GaussianMapRender.csprojResolveAssemblyReference.cache
+C:\Users\tejas\Documents\GitHub\John-Demo\GaussianMapRender\GaussianMapRender\obj\Debug\GaussianMapRender.Properties.Resources.resources
+C:\Users\tejas\Documents\GitHub\John-Demo\GaussianMapRender\GaussianMapRender\obj\Debug\GaussianMapRender.csproj.GenerateResource.cache
+C:\Users\tejas\Documents\GitHub\John-Demo\GaussianMapRender\GaussianMapRender\obj\Debug\GaussianMapRender.csproj.CoreCompileInputs.cache
+C:\Users\tejas\Documents\GitHub\John-Demo\GaussianMapRender\GaussianMapRender\obj\Debug\GaussianMapRender.exe
+C:\Users\tejas\Documents\GitHub\John-Demo\GaussianMapRender\GaussianMapRender\obj\Debug\GaussianMapRender.pdb
