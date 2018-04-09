@@ -36,7 +36,8 @@ namespace GaussianMapRender
             gmap.Zoom = 5;
 
             // Debug Code
-            latLngToPixel();
+            displayMarkers();
+            latLngToPixel(0, 0);
         }
 
         private void gmap_Load(object sender, EventArgs e)
@@ -80,7 +81,7 @@ namespace GaussianMapRender
 
         // TEST SCALE
 
-        public void latLngToPixel()
+        public void displayMarkers()
         {
             BitmapCalculator bc = new BitmapCalculator();
             ParserManager P = new ParserManager();
@@ -109,6 +110,44 @@ namespace GaussianMapRender
             }
             gmap.Overlays.Add(markers);
 
+            // TEST BITMAP CALCULATOR
+            PointF topLeft = new PointF();
+            PointF topRight = new PointF();
+            PointF botLeft = new PointF();
+            PointF botRight = new PointF();
+            //lng = x, lat = y
+            topLeft.X = (float)gmap.ViewArea.LocationTopLeft.Lng;
+            topLeft.Y = (float)gmap.ViewArea.LocationTopLeft.Lat;
+            topRight.X = (float)(gmap.ViewArea.LocationTopLeft.Lng + gmap.ViewArea.WidthLng);
+            topRight.Y = topLeft.Y;
+            botRight.X = (float)gmap.ViewArea.LocationRightBottom.Lng;
+            botRight.Y = (float)gmap.ViewArea.LocationRightBottom.Lat;
+            botLeft.X = (float)(gmap.ViewArea.LocationRightBottom.Lng - gmap.ViewArea.WidthLng);
+            botLeft.Y = botRight.Y;
+            Console.WriteLine("TL: " + topLeft.ToString());
+            Console.WriteLine("TR: " + topRight.ToString());
+            Console.WriteLine("BR: " + botRight.ToString());
+            Console.WriteLine("BL: " + botLeft.ToString());
+
+            // calculate distances
+            double maxWidthDistance = bc.calculateDistance(System.Convert.ToDouble(topLeft.Y), System.Convert.ToDouble(topLeft.X),
+                System.Convert.ToDouble(topRight.Y), System.Convert.ToDouble(topRight.X));
+            double maxHeightDistance = bc.calculateDistance(System.Convert.ToDouble(topLeft.Y), System.Convert.ToDouble(topLeft.X),
+                System.Convert.ToDouble(botRight.Y), System.Convert.ToDouble(botRight.X));
+            //double maxWidthDistance2 = bc.calculateDistance(lats[0], lngs[0], lats[0], lngs[lngs.Count - 1]);
+            Console.WriteLine("WIDTH IN KM: " + maxWidthDistance / 1000);
+            Console.WriteLine("HEIGHT IN KM: " + maxHeightDistance / 1000);
+
+            // RENDER BITMAPS
+        }
+
+        // Lat/Lng to Pixel Code
+
+        public int[] latLngToPixel(double lat, double lng)
+        {
+            Console.WriteLine("PIXEL WIDTH: " + gmap.Width);
+            Console.WriteLine("POXEL HEIGHT: " + gmap.Height);
+            return null;
         }
     }
 }
