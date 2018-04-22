@@ -33,11 +33,11 @@ namespace GaussianMapRender
             GMap.NET.GMaps.Instance.Mode = GMap.NET.AccessMode.ServerOnly;
             gmap.SetPositionByKeywords(DEFAULT_LOCATION);
             gmap.ShowCenter = false;
-            gmap.Zoom = 5;
+            gmap.Zoom = MAP_ZOOM;
 
             // Debug Code
             displayMarkers();
-            latLngToPixel(0, 0);
+            //latLngToPixel(0, 0);
         }
 
         private void gmap_Load(object sender, EventArgs e)
@@ -48,8 +48,8 @@ namespace GaussianMapRender
         public Image getGmapImage()
         {
             Image img = gmap.ToImage();
-            Console.WriteLine(img.Width);
-            Console.WriteLine(img.Height);
+            //Console.WriteLine(img.Width);
+            //Console.WriteLine(img.Height);
             return img;
         }
 
@@ -89,10 +89,11 @@ namespace GaussianMapRender
             List<double> lats = P.latitudeValues;
             List<double> lngs = P.longitudeValues;
             List<double> alphaValues = P.alphaValues;
+            P.scale(alphaValues);
 
             // 1. Create the overlay
             GMapOverlay markers = new GMapOverlay("markers");
-
+            int count = 0;
             for (int i =0; i < lats.Count; i++)
             {
                 //Console.WriteLine(lats[i]);
@@ -100,12 +101,14 @@ namespace GaussianMapRender
                 {
                     //Console.WriteLine(lats[i] + " " + lngs[j]);
                     PointLatLng point = new PointLatLng(lats[i], lngs[j]);
-                    GMapMarker marker = new GMarkerGoogle(point, GMarkerGoogleType.red_pushpin);
-                    //marker.Position
+                    Bitmap temp = getAlphaMap((int)alphaValues[count], 3, 3);
+                    GMapMarker marker = new GMarkerGoogle(point, temp);
+                    
                     // 2. Add markers
                     markers.Markers.Add(marker);
 
                     // 3. Cover map with overlay
+                    count++;
                 }
             }
             gmap.Overlays.Add(markers);
@@ -148,6 +151,18 @@ namespace GaussianMapRender
             Console.WriteLine("PIXEL WIDTH: " + gmap.Width);
             Console.WriteLine("POXEL HEIGHT: " + gmap.Height);
             return null;
+        }
+
+        private void zoomplus_btn_Click_1(object sender, EventArgs e)
+        {
+            MAP_ZOOM++;
+            gmap.Zoom = MAP_ZOOM;
+        }
+
+        private void SaveMap_Click(object sender, EventArgs e)
+        {
+            Image map = gmap.ToImage();
+            map.Save("C:\\Users\\tejas\\Desktop\\MapImgs\\p19.png");
         }
     }
 }
