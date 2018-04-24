@@ -22,10 +22,11 @@ namespace GaussianMapRender
 
         public ParserManager()
         {
-            this.coordinateParser = new CoordinateParser(@"C:\Users\tejas\Documents\GitHub\John-Demo\CoordinateData\lat.txt", @"C:\Users\tejas\Documents\GitHub\John-Demo\CoordinateData\long.txt");
-            this.alphaValueParser = new AlphaValueParser(@"C:\Users\tejas\Documents\GitHub\John-Demo\CoordinateData\p_19.txt");
+            this.coordinateParser = new CoordinateParser(@"C:\Users\Dev\Documents\GitHub\John-Demo\CoordinateData\lat.txt", @"C:\Users\Dev\Documents\GitHub\John-Demo\CoordinateData\long.txt");
+            this.alphaValueParser = new AlphaValueParser(@"C:\Users\Dev\Documents\GitHub\John-Demo\CoordinateData\p_19.txt");
         }
 
+        // starts parser operations
         public void execute()
         {
             coordinateParser.ParseFile();
@@ -36,6 +37,8 @@ namespace GaussianMapRender
             double min = getMin(alphaValues);
             double max = getMax(alphaValues);
         }
+
+        // return min of list 'a'
         public double getMin(List<double> a)
         {
             double min = a[0];
@@ -46,6 +49,8 @@ namespace GaussianMapRender
             Console.WriteLine("Absolute min: " + min);
             return min;
         }
+
+        // return max of list 'a'
         public double getMax(List<double> a)
         {
             double max = a[0];
