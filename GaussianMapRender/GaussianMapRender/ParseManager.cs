@@ -26,6 +26,12 @@ namespace GaussianMapRender
             this.alphaValueParser = new AlphaValueParser(@"C:\Users\tejas\Documents\GitHub\John-Demo\CoordinateData\p_1.txt");
         }
 
+        public ParserManager(String file)
+        {
+            this.coordinateParser = new CoordinateParser(@"C:\Users\tejas\Documents\GitHub\John-Demo\CoordinateData\lat.txt", @"C:\Users\tejas\Documents\GitHub\John-Demo\CoordinateData\long.txt");
+            this.alphaValueParser = new AlphaValueParser(@"C:\Users\tejas\Documents\GitHub\John-Demo\CoordinateData\" + file);
+        }
+
         // starts parser operations
         public void execute()
         {

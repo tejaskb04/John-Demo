@@ -73,7 +73,7 @@ namespace GaussianMapRender
         {
             Bitmap bmp = new Bitmap(width, height);
             Graphics g = Graphics.FromImage(bmp);
-            Color c = Color.FromArgb(((int)(alphaValue)), 255, 0, 0);
+            Color c = Color.FromArgb(((int)Math.Round(alphaValue)), 255, 0, 0);
             Brush b = new SolidBrush(c);
             g.FillRectangle(b, 0, 0, width, height);
             return bmp;
@@ -91,15 +91,27 @@ namespace GaussianMapRender
             List<double> alphaValues = P.alphaValues;
             P.scale(alphaValues);
 
+            ParserManager P2 = new ParserManager("p_2.txt");
+            P2.execute();
+            List<double> alphaValues2 = P2.alphaValues;
+            /*foreach (double i in alphaValues2)
+            {
+                Console.WriteLine(i);
+            }*/
+            P2.scale(alphaValues2);
+
             /*
              * 1. Add epsilon to alphaValues until p2.txt values reached
              * 2. Render image for each alphaValues + n * epsilon
              * 3. Automize image export process
             */
-            /*double epsilon = 0.01;
-            for (int i = 0; i < alphaValues.Count; i++)
+            /*for (int i = 0; i <= 100; i++)
             {
-                alphaValues[i] += epsilon;
+                for (int j = 0; j < alphaValues.Count; j++)
+                {
+                    double diff = Math.Abs(alphaValues[j] - alphaValues2[j]);
+                    alphaValues[j] *= (diff * i / 100);
+                }
             }*/
 
             // 1. Create the overlay
@@ -151,8 +163,6 @@ namespace GaussianMapRender
             //double maxWidthDistance2 = bc.calculateDistance(lats[0], lngs[0], lats[0], lngs[lngs.Count - 1]);
             Console.WriteLine("WIDTH IN KM: " + maxWidthDistance / 1000);
             Console.WriteLine("HEIGHT IN KM: " + maxHeightDistance / 1000);
-
-            // RENDER BITMAPS
         }
 
         // Lat/Lng to Pixel Code
