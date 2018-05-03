@@ -96,6 +96,11 @@ namespace GaussianMapRender
              * 2. Render image for each alphaValues + n * epsilon
              * 3. Automize image export process
             */
+            /*double epsilon = 0.01;
+            for (int i = 0; i < alphaValues.Count; i++)
+            {
+                alphaValues[i] += epsilon;
+            }*/
 
             // 1. Create the overlay
             GMapOverlay markers = new GMapOverlay("markers");
