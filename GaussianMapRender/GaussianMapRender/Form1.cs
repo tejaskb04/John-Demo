@@ -91,6 +91,12 @@ namespace GaussianMapRender
             List<double> alphaValues = P.alphaValues;
             P.scale(alphaValues);
 
+            /*
+             * 1. Add epsilon to alphaValues until p2.txt values reached
+             * 2. Render image for each alphaValues + n * epsilon
+             * 3. Automize image export process
+            */
+
             // 1. Create the overlay
             GMapOverlay markers = new GMapOverlay("markers");
             int count = 0;
